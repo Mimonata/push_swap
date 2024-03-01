@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
-long	atol(char *argv)
+long	ft_atol(char *argv)
 {
 	int i;
 	long	n;
@@ -36,6 +37,8 @@ long	atol(char *argv)
 		else
 			return (0);
 	}
+	//if(n*s > INT_MAX || n*s < INT_MIN)
+		//ft_error();
 	return (n*s);
 }
 
@@ -55,17 +58,21 @@ t_node	*create_new_node(char *argv, long n)
 
 void	append_new_node(t_node **stack, t_node *node)
 {
+	t_node	*current;
+
+	current = *stack;
 	if (*stack == NULL)
 		*stack = node;
 	else
 	{
-		node->next = *stack;
-		(*stack)->prev = node;
-		*stack = node;
+		while (current->next != NULL)
+			current = current->next;
+		current->next = node;
+		node->prev = current;
 	}
 }
 
-int number_error(char *argv)
+int	number_error(char *argv)
 {
 	while (*argv)
 	{
@@ -99,38 +106,71 @@ int	duplicate_number(long n, t_node *stack)
 	return (0);
 }
 
-void  create_stack_a(t_node **stack, char **argv)
+int	free_stack(t_node **stack)
 {
-	long    i;
-	long	n;
-	t_node  *new_node;
+	t_node	*current;
+	t_node	*last;
 
-	i = 0;
+	current = *stack;
+	while (current != NULL)
+	{
+		last = current;
+		current = current->next;
+		free (last);
+	}
+	*stack = NULL;
+	return (1);
+}
+
+int  create_stack_a(t_node **stack, char **argv)
+{
+	long	i;
+	long	n;
+	t_node	*new_node;
+
+	i = 1;
+	n = 0;
 	if (!argv)
 		return (1);
 	while (argv[i])
 	{
+		//num = ft_atol(argv[i])
 		if (!number_error(argv[i]))
-			n = atol(argv[i]);
-		if (!duplicate_number(n, stack))
+			n = ft_atol(argv[i]);
+		if (n > INT_MAX || n < INT_MIN)
+			return (free_stack(stack));
+		if (!duplicate_number(n, *stack))
 		{
 			new_node = create_new_node(argv[i], n);
 			if (!new_node)
-				return (free_stack());
+				return (free_stack(stack));
 			append_new_node(stack, new_node);
 		}
+	}
+}
+
+void	printstack(t_node *a)
+{
+	while (a != NULL)
+	{
+		printf("%ld\n", a->nbr);
+		a = a->next;
+	}
 }
 
 int main(int argc, char **argv)
 {
-	t_node  *a;
-	t_node  *b;
+	t_node	*a;
+	t_node	*b;
 
 	a = NULL;
 	b = NULL;
 	if (argc < 2 || !argv[1][0])
 		return (1);
-	create_stack_a(&a, argv + 1);
-	if (argc  4)
-
+	create_stack_a(&a, argv);
+	if (argc == 4)
+	//	sort_three(&a);
+	printstack(a);
+	//ft_stack_dealloc(a);
+	return (0);
 } 
