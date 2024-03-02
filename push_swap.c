@@ -76,10 +76,12 @@ int	number_error(char *argv)
 	while (*argv)
 	{
 		if (*argv == '-' || *argv == '+')
+		{
 			if (*(argv +1) >= '0' && *(argv +1) <= '9')
 				argv ++;
 			else
 				return (1);
+		}
 		while (*argv)
 		{
 			if (*argv < '0' && *argv > '9')
@@ -163,7 +165,6 @@ int  create_stack_a(t_node **stack, char **argv)
 		return (1);
 	while (argv[i])
 	{
-		//num = ft_atol(argv[i])
 		if (!number_error(argv[i]))
 			n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
@@ -175,6 +176,9 @@ int  create_stack_a(t_node **stack, char **argv)
 				return (free_stack(stack));
 			append_new_node(stack, new_node);
 		}
+		else 
+			return (free_stack(stack));
+		i ++;
 	}
 }
 
@@ -196,8 +200,9 @@ int main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2 || !argv[1][0])
 		return (1);
-	create_stack_a(&a, argv);
-	if (argc == 4)
+	else
+		create_stack_a(&a, argv);
+	//if (argc == 4)
 	//	sort_three(&a);
 	printstack(a);
 	//ft_stack_dealloc(a);
