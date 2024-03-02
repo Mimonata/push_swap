@@ -42,14 +42,13 @@ long	ft_atol(char *argv)
 	return (n*s);
 }
 
-t_node	*create_new_node(char *argv, long n)
+t_node	*create_new_node(long n)
 {
 	t_node	*new_node;
 	
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		return (NULL);
-	//new_node->nbr = atol(*argv); //dies vielleicht auch anderswo
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	new_node->nbr = n;
@@ -76,10 +75,11 @@ int	number_error(char *argv)
 {
 	while (*argv)
 	{
-		if (*argv == '-' || *argv == '+' || (*argv >= '0' && *argv <= '9'))
-			argv ++;
-		else
-			return (1);
+		if (*argv == '-' || *argv == '+')
+			if (*(argv +1) >= '0' && *(argv +1) <= '9')
+				argv ++;
+			else
+				return (1);
 		while (*argv)
 		{
 			if (*argv < '0' && *argv > '9')
@@ -104,6 +104,35 @@ int	duplicate_number(long n, t_node *stack)
 		current = current->next;
 	}
 	return (0);
+}
+
+int	stackt_sorted(t_node *stack)
+{
+	t_node	*current;
+
+	current = stack;
+	while (current->next != NULL)
+	{
+		if (current->nbr > current->next->nbr)
+			return (1);
+		current = current->next;
+	}
+	return (0);
+}
+
+long	stack_length(t_node *stack)
+{
+	t_node	*current;
+	long	len;
+
+	len = 0;
+	current = stack;
+	while (current != NULL)
+	{
+		len ++;
+		current = current->next;
+	}
+	return (len);
 }
 
 int	free_stack(t_node **stack)
@@ -141,7 +170,7 @@ int  create_stack_a(t_node **stack, char **argv)
 			return (free_stack(stack));
 		if (!duplicate_number(n, *stack))
 		{
-			new_node = create_new_node(argv[i], n);
+			new_node = create_new_node(n);
 			if (!new_node)
 				return (free_stack(stack));
 			append_new_node(stack, new_node);
