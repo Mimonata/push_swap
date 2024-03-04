@@ -127,6 +127,8 @@ long	stack_length(t_node *stack)
 	t_node	*current;
 	long	len;
 
+	if (!stack)
+		return (0);
 	len = 0;
 	current = stack;
 	while (current != NULL)
