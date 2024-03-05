@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                         :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spitul <spitul@student.42berlin.de>        +#+  +:+       +#+        */
+/*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:45:09 by spitul            #+#    #+#             */
-/*   Updated: 2024/02/20 18:45:09 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/05 17:46:49 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 long	ft_atol(char *argv)
 {
-	int i;
+	int		i;
 	long	n;
 	long	s;
 
@@ -33,19 +33,19 @@ long	ft_atol(char *argv)
 	while (argv[i] != '\0')
 	{
 		if (argv[i] >= '0' && argv[i] <= '9')
-			n = n*10 + (argv[i ++] - 48);
+			n = n * 10 + (argv[i ++] - 48);
 		else
 			return (0);
 	}
 	//if(n*s > INT_MAX || n*s < INT_MIN)
 		//ft_error();
-	return (n*s);
+	return (n * s);
 }
 
 t_node	*create_new_node(long n)
 {
 	t_node	*new_node;
-	
+
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		return (NULL);
@@ -88,7 +88,7 @@ int	number_error(char *argv)
 				return (1);
 			argv ++;
 		}
-		return (0);		
+		return (0);
 	}
 }
 
@@ -155,7 +155,7 @@ int	free_stack(t_node **stack)
 	return (1);
 }
 
-int  create_stack_a(t_node **stack, char **argv)
+int	create_stack_a(t_node **stack, char **argv)
 {
 	long	i;
 	long	n;
@@ -193,7 +193,7 @@ void	printstack(t_node *a)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_node	*a;
 	t_node	*b;
@@ -209,4 +209,4 @@ int main(int argc, char **argv)
 	printstack(a);
 	//ft_stack_dealloc(a);
 	return (0);
-} 
+}

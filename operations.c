@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:10:16 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/02 14:31:26 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/05 17:47:28 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	swap_top(t_node **stack)
 {
 	t_node	*temp;
 
-	temp = (*stack)->next;	
+	temp = (*stack)->next;
 	if (!(*stack) || ((*stack)->next == NULL))
 		return ;
 	(*stack)->next = temp->next;
@@ -24,7 +24,7 @@ void	swap_top(t_node **stack)
 	(*stack)->prev = temp;
 	temp->prev = NULL;
 	temp->next = *stack;
-	*stack  = temp;
+	*stack = temp;
 }
 
 void	sa(t_node **stack_a)
@@ -100,7 +100,7 @@ void	rotate(t_node **stack)
 	*stack = (*stack)->next;
 	last->next->prev = last;
 	last->next->next = NULL;
-	(*stack)->prev = NULL;	
+	(*stack)->prev = NULL;
 }
 
 void	ra(t_node **stack_a)

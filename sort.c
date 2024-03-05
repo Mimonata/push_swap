@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: spitul <spitul@student.42berlin.de>        +#+  +:+       +#+        */
+/*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 20:22:44 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/04 20:22:44 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/05 18:14:22 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	set_pos(t_node	**stack)
 {
-	int	i;
+	int		i;
 	t_node	*current;
 
-	i = 1;
+	i = 0;
 	current = *stack;
 	while (current != NULL)
 	{
