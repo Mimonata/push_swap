@@ -12,7 +12,27 @@
 
 #include "push_swap.h"
 
-t_node	*find_target_node(t_node **current, t_node *stack)
+t_node	*find_target_in_a(t_node **current, t_node *stack)
+{
+	t_node	*target;
+
+	target = NULL;
+	if (!*current)
+		return (NULL);
+	while (stack != NULL)
+	{
+		if (((*current)->nbr < stack->nbr) && (target == NULL))
+			target = *current;
+		else if (((*current)->nbr < stack->nbr) && 
+		(((*current)->nbr - stack->nbr) < ((*current)->nbr - target->nbr)))
+			target = *current;
+		stack = stack->next;
+	}
+	return (target);
+}
+
+
+t_node	*find_target_in_b(t_node **current, t_node *stack)
 {
 	t_node	*target;
 
