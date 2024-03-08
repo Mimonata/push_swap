@@ -23,7 +23,7 @@ typedef struct s_node
 	long			nbr;
 	unsigned int	position;
 	unsigned int	cost;
-	bool			rotate_up; 
+	bool			up_rotation; 
 	struct s_node	*target_node;
 	struct s_node	*next;
 	struct s_node	*prev;
