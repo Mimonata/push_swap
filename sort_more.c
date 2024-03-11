@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 21:01:30 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/11 14:19:07 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/11 16:15:49 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_node	*find_target_in_a(t_node **current, t_node *stack)
 		if (((*current)->nbr < stack->nbr) && (target == NULL))
 			target = *current;
 		else if (((*current)->nbr < stack->nbr) && 
-		((stack->nbr - (*current)->nbr) < (target->nbr - (*current)->nbr)))
+			((stack->nbr - (*current)->nbr) < (target->nbr - (*current)->nbr)))
 			target = *current;
 		stack = stack->next;
 	}
@@ -32,7 +32,6 @@ t_node	*find_target_in_a(t_node **current, t_node *stack)
 		target = get_max(stack);
 	return (target);
 }
-
 
 t_node	*find_target_in_b(t_node **current, t_node *stack)
 {
@@ -46,72 +45,13 @@ t_node	*find_target_in_b(t_node **current, t_node *stack)
 		if (((*current)->nbr > stack->nbr) && (target == NULL))
 			target = *current;
 		else if (((*current)->nbr > stack->nbr) && 
-		(((*current)->nbr - stack->nbr) < ((*current)->nbr - target->nbr)))
+			(((*current)->nbr - stack->nbr) < ((*current)->nbr - target->nbr)))
 			target = *current;
 		stack = stack->next;
 	}
 	if (target == NULL)
 		target = get_max(stack);
 	return (target);
-}
-
-void	set_rotation_direction(t_node *stack)
-{
-	long	len;
-	
-	if (!stack)
-		return ;
-	len = stack_length(&stack);
-	while (stack)
-	{
-		if (stack->position <= (len / 2))
-			stack->up_rotation = true;
-		else
-			stack->up_rotation = false;
-	}
-}
-
-unsigned int	cost_movement_in_stack(t_node *node, t_node *stack, unsigned int len_stack)
-{
-	unsigned int	cost;
-
-	if (!stack)
-		return (0);
-	len_stack = stack_length(stack);
-	if (stack->up_rotation == true)
-		cost = stack->position;
-	else 
-		cost = len_stack - stack->position;
-	return (cost);
-}
-
-void	set_cost(t_node **src, t_node **dst)
-{
-	unsigned int	cost_node;
-	unsigned int	cost_target;
-	long	len_src;
-	long	len_dst;
-	t_node	*current;
-
-	current = *src;
-	if (!src || !dst)
-		return (NULL);
-	len_src = stack_length(*src);
-	len_dst = stack_length(*dst);
-	if (len_dst > 2)
-	{
-		while (*src)
-		{
-			cost_target = cost_movement_in_stack(current->target_node, *dst, len_dst);
-			cost_node = cost_movement_in_stack(current, *src, len_src);
-			if (((*src)->up_rotation == true && (*src)->target_node->up_rotation == true) ||
-				((*src)->up_rotation == false && (*src)->target_node->up_rotation == false))
-				current->cost = (cost_node > cost_target) ? cost_node : cost_target;
-			else
-				current->cost = cost_node + cost_target;
-			current = current->next;
-		}
-	}
 }
 
 t_node	*get_cheapest(t_node *stack)
@@ -125,21 +65,83 @@ t_node	*get_cheapest(t_node *stack)
 	{
 		if (cheapest->cost < stack->cost)
 			cheapest = stack;
-		stack =  stack->next;
+		stack = stack->next;
 	}
 	return (cheapest);
 }
 
-void	init_a(t_node **src, t_node **dst)
+void	move_cheapest_a_to_b(t_node **node, t_node **src, t_node **dst)
 {
-	set_rotation_direction(*src);
-	find_target_in_b(*dst, );
+	if ((*node)->up_rotation == true && 
+		(*node)->target_node->up_rotation == true)
+		while ((*node)->position != 1 \
+		|| (*node)->target_node->position != 1)
+		{
+			rr(src, dst);
+			set_pos(src);
+			set_pos(dst);
+		}
+	else if ((*node)->up_rotation == false && 
+		(*node)->target_node->up_rotation == false)
+		while ((*node)->position != 1 || (*node)->target_node->position != 1)
+		{
+			rrr(src, dst);
+			set_pos(src);
+			set_pos(dst);
+		}
+	if ((*node)->position != 1)
+		while ((*node)->position != 1)
+		{
+			ra(src);
+			set_pos(src);
+		}
+	else if ((*node)->target_node->position != 1)
+		while ((*node)->position != 1)
+		{
+			rb(dst);
+			set_pos(dst);
+		}
+	pb(src, dst);
+}
 
+void	move_cheapest_b_to_a(t_node **node, t_node **src, t_node **dst)
+{
+	if ((*node)->up_rotation == true 
+		&& (*node)->target_node->up_rotation == true)
+		while ((*node)->position != 1 || (*node)->target_node->position != 1)
+		{
+			rr(src, dst);
+			set_pos(src);
+			set_pos(dst);
+		}
+	else if ((*node)->up_rotation == false 
+		&& (*node)->target_node->up_rotation == false)
+		while ((*node)->position != 1 || (*node)->target_node->position != 1)
+		{
+			rrr(src, dst);
+			set_pos(src);
+			set_pos(dst);
+		}
+	if ((*node)->position != 1)
+		while ((*node)->position != 1)
+		{
+			ra(src);
+			set_pos(src);
+		}
+	else if ((*node)->target_node->position != 1)
+		while ((*node)->position != 1)
+		{
+			rb(dst);
+			set_pos(dst);
+		}
+	pa(src, dst);
 }
 
 void	sort_push_b(t_node **src, t_node **dst)
 {
-	int	len;
+	int		len;
+	t_node	*cheapest;
+	t_node	*current;
 
 	len = stack_length(*src);
 	if (*dst == NULL)
@@ -151,9 +153,40 @@ void	sort_push_b(t_node **src, t_node **dst)
 	{
 		while (len > 3)
 		{
-			
-			find_target_in_b()
+			current = *src;
+			while (current != NULL)
+			{
+				find_target_in_b(src, *dst);
+				set_rotation_direction(src);
+				set_rotation_direction(dst);
+				set_cost(src, dst);
+				current = current->next;
+			}
+			cheapest = get_cheapest(src);
+			move_cheapest_a_to_b(&cheapest, src, dst);
+			len --;
 		}
-		
+	}
+}
+
+void	sort_push_a(t_node **src, t_node **dst)
+{
+	int		len;
+	t_node	*cheapest;
+	t_node	*current;
+
+	while (*dst != NULL)
+	{
+		current = *src;
+		while (current != NULL)
+		{
+			find_target_in_b(src, *dst);
+			set_rotation_direction(src);
+			set_rotation_direction(dst);
+			set_cost(src, dst);
+			current = current->next;
+		}
+		cheapest = get_cheapest(src);
+		move_cheapest_a_to_b(&cheapest, src, dst);
 	}
 }

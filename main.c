@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 18:44:34 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/05 17:49:05 by spitul           ###   ########.fr       */
+/*   Created: 2024/02/20 18:45:09 by spitul            #+#    #+#             */
+/*   Updated: 2024/03/11 15:53:20 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
+#include <stdio.h>
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-# include <stdbool.h>
-
-typedef struct s_node
+void	printstack(t_node *a)
 {
-	long			nbr;
-	unsigned int	position;
-	unsigned int	cost;
-	bool			up_rotation; 
-	struct s_node	*target_node;
-	struct s_node	*next;
-	struct s_node	*prev;
-}	t_node;
+	while (a != NULL)
+	{
+		printf("%ld\n", a->nbr);
+		a = a->next;
+	}
+}
 
-#endif
+int	main(int argc, char **argv)
+{
+	t_node	*a;
+	t_node	*b;
+
+	a = NULL;
+	b = NULL;
+	if (argc < 2 || !argv[1][0])
+		return (1);
+	else
+		create_stack_a(&a, argv);
+	//if (argc == 4)
+	//	sort_three(&a);
+	printstack(a);
+	//ft_stack_dealloc(a);
+	return (0);
+}
