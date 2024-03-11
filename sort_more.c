@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 21:01:30 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/05 18:18:48 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/11 14:19:07 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,23 @@ void	init_a(t_node **src, t_node **dst)
 
 }
 
-void	do_the_sort(t_node **src, t_node **dst)
+void	sort_push_b(t_node **src, t_node **dst)
 {
+	int	len;
 
+	len = stack_length(*src);
+	if (*dst == NULL)
+	{
+		pb(src, dst); 
+		pb(src, dst);
+	}
+	else
+	{
+		while (len > 3)
+		{
+			
+			find_target_in_b()
+		}
+		
+	}
 }
