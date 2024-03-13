@@ -10,3 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME := push_swap
+
+SRC_DIR := src/
+
+#Compiler & flags
+
+CC := CC
+CFLAGS := -Wall -Wextra -Werror -I
