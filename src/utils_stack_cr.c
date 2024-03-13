@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:51:25 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/11 15:52:15 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:18:20 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,4 @@ long	stack_length(t_node *stack)
 		current = current->next;
 	}
 	return (len);
-}
-
-int	free_stack(t_node **stack)
-{
-	t_node	*current;
-	t_node	*last;
-
-	current = *stack;
-	while (current != NULL)
-	{
-		last = current;
-		current = current->next;
-		free (last);
-	}
-	*stack = NULL;
-	return (1);
 }

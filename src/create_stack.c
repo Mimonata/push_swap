@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:47:40 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/11 16:00:13 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/13 12:28:18 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,22 @@ void	append_new_node(t_node **stack, t_node *node)
 		current->next = node;
 		node->prev = current;
 	}
+}
+
+int	free_stack(t_node **stack)
+{
+	t_node	*current;
+	t_node	*last;
+
+	current = *stack;
+	while (current != NULL)
+	{
+		last = current;
+		current = current->next;
+		free (last);
+	}
+	*stack = NULL;
+	return (1);
 }
 
 int	create_stack_a(t_node **stack, char **argv)

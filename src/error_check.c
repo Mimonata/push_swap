@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:48:52 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/11 15:59:57 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:17:37 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	duplicate_number(long n, t_node *stack)
 	return (0);
 }
 
-int	stackt_sorted(t_node *stack)
+int	stack_sorted(t_node *stack)
 {
 	t_node	*current;
 

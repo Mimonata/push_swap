@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:40:56 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/11 16:06:33 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/13 16:57:37 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,16 @@ void	set_cost(t_node **src, t_node **dst)
 				current->cost = cost_node + cost_target;
 			current = current->next;
 		}
+	}
+}
+
+void	min_on_top(t_node **stack)
+{
+	while ((*stack)->nbr != get_min(*stack))
+	{
+		if ((*stack)->up_rotation)
+			ra(*stack);
+		else
+			rra(*stack);
 	}
 }
