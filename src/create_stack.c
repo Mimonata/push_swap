@@ -6,13 +6,13 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:47:40 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/13 12:28:18 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/14 11:05:46 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*create_new_node(long n)
+static t_node	*create_new_node(long n)
 {
 	t_node	*new_node;
 
@@ -25,7 +25,7 @@ t_node	*create_new_node(long n)
 	return (new_node);
 }
 
-void	append_new_node(t_node **stack, t_node *node)
+static void	append_new_node(t_node **stack, t_node *node)
 {
 	t_node	*current;
 
@@ -84,4 +84,5 @@ int	create_stack_a(t_node **stack, char **argv)
 			return (free_stack(stack));
 		i ++;
 	}
+	return (0);
 }

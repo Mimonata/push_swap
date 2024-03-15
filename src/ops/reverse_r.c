@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   reverse_r.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:10:16 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/11 15:38:43 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/14 11:36:33 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_node	*go_to_last(t_node *stack)
 {
@@ -22,7 +22,7 @@ t_node	*go_to_last(t_node *stack)
 	return (last);
 }
 
-void	reverse_rotate(t_node **stack)
+static void	reverse_rotate(t_node **stack)
 {
 	t_node	*last;
 

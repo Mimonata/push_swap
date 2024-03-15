@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:45:09 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/13 15:47:34 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/14 17:05:31 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int	main(int argc, char **argv)
 	else
 	{
 		create_stack_a(&a, argv);
+		printstack(a);
 		len = stack_length(a);
-		if (!stack_sorted(a))
+		if (stack_sorted(a))
 		{
 			if (len == 2)
 				sa(&a);
@@ -45,6 +46,7 @@ int	main(int argc, char **argv)
 			else
 				sort_stack(&a, &b, len);
 		}
+		printstack(a);
 		free_stack(&a);
 	}
 	return (0);

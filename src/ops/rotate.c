@@ -6,13 +6,13 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:38:19 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/11 16:15:09 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/14 11:36:37 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	rotate(t_node **stack)
+static void	rotate(t_node **stack)
 {
 	t_node	*last;
 

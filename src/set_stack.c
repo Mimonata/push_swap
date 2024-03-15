@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:40:56 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/13 16:57:37 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/14 18:54:13 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,25 @@ void	set_rotation_direction(t_node *stack)
 
 	if (!stack)
 		return ;
-	len = stack_length(&stack);
+	len = stack_length(stack);
 	while (stack)
 	{
 		if (stack->position <= (len / 2))
 			stack->up_rotation = true;
 		else
 			stack->up_rotation = false;
+		stack = stack->next;
 	}
 }
 
-unsigned int	in_stack_cost(t_node *node, t_node *stack, 
-	unsigned int len_stack)
+static unsigned int	in_stack_cost(t_node *node,	long len_stack)
 {
-	unsigned int	cost;
-
-	if (!stack)
-		return (0);
-	len_stack = stack_length(stack);
-	if (stack->up_rotation == true)
-		cost = stack->position;
+	long	cost;
+	
+	if (node->up_rotation == true)
+		cost = node->position;
 	else 
-		cost = len_stack - stack->position;
+		cost = len_stack - node->position;
 	return (cost);
 }
 
@@ -66,36 +63,34 @@ void	set_cost(t_node **src, t_node **dst)
 	long			len_dst;
 	t_node			*current;
 
+	if (!*src || !*dst)
+		return ;
 	current = *src;
-	if (!src || !dst)
-		return (NULL);
 	len_src = stack_length(*src);
 	len_dst = stack_length(*dst);
-	if (len_dst > 2)
+	if (len_dst > 1)
 	{
-		while (*src)
+		while (current)
 		{
-			cost_target = in_stack_cost(current->target_node, *dst, len_dst);
-			cost_node = in_stack_cost(current, *src, len_src);
-			if (((*src)->up_rotation == true && 
-					(*src)->target_node->up_rotation == true) 
-				|| ((*src)->up_rotation == false && 
-					(*src)->target_node->up_rotation == false))
-				current->cost = (cost_node > cost_target) ? cost_node : cost_target;
-			else
+			cost_target = in_stack_cost(current->target_node, len_dst);		
+			cost_node = in_stack_cost(current, len_src);		
+			if ((current->up_rotation && current->target_node->up_rotation) 		
+				|| (!current->up_rotation && !current->target_node->up_rotation))		
+				current->cost = (cost_node > cost_target) ? cost_node : cost_target;		
+			else		
 				current->cost = cost_node + cost_target;
-			current = current->next;
-		}
+			current =  current->next;
+		}	
 	}
 }
 
 void	min_on_top(t_node **stack)
 {
-	while ((*stack)->nbr != get_min(*stack))
+	while ((*stack) != get_min(*stack))
 	{
 		if ((*stack)->up_rotation)
-			ra(*stack);
+			ra(stack);
 		else
-			rra(*stack);
+			rra(stack);
 	}
 }

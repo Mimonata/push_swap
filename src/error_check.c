@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:48:52 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/13 15:17:37 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/14 11:11:05 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	number_error(char *argv)
 	{
 		if (*argv == '-' || *argv == '+')
 		{
-			if (*(argv +1) >= '0' && *(argv +1) <= '9')
+			if (*(argv + 1) >= '0' && *(argv + 1) <= '9')
 				argv ++;
 			else
 				return (1);
@@ -35,8 +35,8 @@ int	number_error(char *argv)
 				return (1);
 			argv ++;
 		}
-		return (0);
 	}
+	return (0);
 }
 
 int	duplicate_number(long n, t_node *stack)
