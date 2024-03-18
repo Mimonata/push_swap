@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/02 13:10:16 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/14 11:36:33 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/17 17:16:56 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ static void	reverse_rotate(t_node **stack)
 {
 	t_node	*last;
 
-	if ((!*stack) || ((*stack)->next == NULL))
+	if ((!*stack) || ((*stack)->next == NULL) || !stack)
 		return ;
 	last = go_to_last(*stack);
-	last->next = *stack;
-	(*stack)->prev = last;
 	last->prev->next = NULL;
+	last->next = *stack;
 	last->prev = NULL;
 	*stack = last;
+	last->next->prev = last;
 }
 
 void	rra(t_node **stack_a)

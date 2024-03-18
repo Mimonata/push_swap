@@ -6,11 +6,11 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:47:40 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/14 11:05:46 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/17 15:45:52 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static t_node	*create_new_node(long n)
 {
@@ -63,7 +63,7 @@ int	create_stack_a(t_node **stack, char **argv)
 	long	n;
 	t_node	*new_node;
 
-	i = 1;
+	i = 0;
 	n = 0;
 	if (!argv)
 		return (1);
@@ -71,7 +71,7 @@ int	create_stack_a(t_node **stack, char **argv)
 	{
 		if (!number_error(argv[i]))
 			n = ft_atol(argv[i]);
-		if (n > INT_MAX || n < INT_MIN)
+		if (int_check(n))
 			return (free_stack(stack));
 		if (!duplicate_number(n, *stack))
 		{
@@ -84,5 +84,6 @@ int	create_stack_a(t_node **stack, char **argv)
 			return (free_stack(stack));
 		i ++;
 	}
+	printstack(*stack);
 	return (0);
 }

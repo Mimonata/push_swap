@@ -6,11 +6,11 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:32:48 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/15 18:07:00 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/18 14:25:42 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	sort_stack(t_node **stack_a, t_node **stack_b, long len_a)
 {
@@ -24,13 +24,14 @@ void	sort_stack(t_node **stack_a, t_node **stack_b, long len_a)
 		sort_push_b(stack_a, stack_b);
 		len_a --;
 	}
+	printstack(*stack_b);
 	if (stack_sorted(*stack_a))
 		sort_three(stack_a);
 	while (*stack_b != NULL)
-	{
 		sort_push_a(stack_b, stack_a);
-		if (*stack_b)
-			(*stack_b) = (*stack_b)->next;
-	}
+	set_pos(stack_a);
+	set_rotation_direction(*stack_a);
+	//printstack(*stack_a);
 	min_on_top(stack_a);
+	//printstack(*stack_a);
 }

@@ -6,11 +6,11 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:40:56 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/14 18:54:13 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/17 16:43:31 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	set_pos(t_node	**stack)
 {
@@ -84,13 +84,23 @@ void	set_cost(t_node **src, t_node **dst)
 	}
 }
 
-void	min_on_top(t_node **stack)
+void min_on_top(t_node **stack)
 {
-	while ((*stack) != get_min(*stack))
-	{
-		if ((*stack)->up_rotation)
-			ra(stack);
-		else
-			rra(stack);
-	}
+    if (*stack == NULL || (*stack)->next == NULL) // If the stack is empty or has only one node, return
+        return;
+
+    t_node *minNode = get_min(*stack);
+
+    if (minNode == *stack) // If the minimum value is already at the top, no rotation needed
+        return;
+
+    // If the minimum value is not at the top, rotate accordingly
+    while ((*stack)->nbr != minNode->nbr)
+    {
+        if (minNode->up_rotation)
+            ra(stack);
+        else
+            rra(stack);
+    }
 }
+

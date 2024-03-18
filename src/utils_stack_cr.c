@@ -6,11 +6,11 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:51:25 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/13 15:18:20 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/16 17:47:31 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 long	ft_atol(char *argv)
 {
@@ -36,8 +36,10 @@ long	ft_atol(char *argv)
 		else
 			return (0);
 	}
-	//if(n*s > INT_MAX || n*s < INT_MIN)
-		//ft_error();
+	if(n*s > INT_MAX || n*s < INT_MIN)
+	{
+		
+	}
 	return (n * s);
 }
 

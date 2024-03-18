@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:44:34 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/14 11:28:24 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/17 15:46:41 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,14 @@ void	ss(t_node **stack_a, t_node **stack_b);
 
 int	free_stack(t_node **stack);
 int	create_stack_a(t_node **stack, char **argv);
-void	write_error(void);
+int	write_error(void);
 int	number_error(char *argv);
 int	duplicate_number(long n, t_node *stack);
 int	stack_sorted(t_node *stack);
+int	int_check(long n);
 
 int	main(int argc, char **argv);
+char	**ft_split(char const *s, char c);
 void	sort_stack(t_node **stack_a, t_node **stack_b, long len_a);
 void	set_pos(t_node	**stack);
 void	set_rotation_direction(t_node *stack);
@@ -68,5 +70,6 @@ t_node	*get_min(t_node *stack);
 void	sort_three(t_node **stack);
 long	stack_length(t_node *stack);
 long	ft_atol(char *argv);
+void	printstack(t_node *a);
 
 #endif

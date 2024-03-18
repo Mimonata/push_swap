@@ -6,16 +6,16 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:48:52 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/14 11:11:05 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/17 14:15:50 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	write_error(void)
+int	write_error(void)
 {
 	write(1, "Error\n", 6);
-	exit(EXIT_FAILURE);	
+	return (1);	
 }
 
 int	number_error(char *argv)
@@ -27,16 +27,24 @@ int	number_error(char *argv)
 			if (*(argv + 1) >= '0' && *(argv + 1) <= '9')
 				argv ++;
 			else
-				return (1);
+				return (write_error());
 		}
 		while (*argv)
 		{
 			if (*argv < '0' && *argv > '9')
-				return (1);
+				return (write_error());
 			argv ++;
 		}
 	}
 	return (0);
+}
+
+int	int_check(long n)
+{
+	if (n > INT_MAX || n < INT_MIN)
+		return (write_error());
+	else 
+		return (0);
 }
 
 int	duplicate_number(long n, t_node *stack)
@@ -49,7 +57,7 @@ int	duplicate_number(long n, t_node *stack)
 	while (current)
 	{
 		if (current->nbr == n)
-			return (1);
+			return (write_error());
 		current = current->next;
 	}
 	return (0);

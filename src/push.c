@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:35:07 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/14 17:15:38 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/17 16:49:10 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	push_top(t_node **src, t_node **dst)
 {
 	t_node	*temp;
 
-	if (!*src)
+	if (!*src || !src)
 		return ;
 	temp = *src;
 	*src = (*src)->next;

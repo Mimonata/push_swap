@@ -6,11 +6,11 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 20:22:44 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/11 15:41:40 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/16 14:45:27 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_node	*get_max(t_node *stack)
 {
