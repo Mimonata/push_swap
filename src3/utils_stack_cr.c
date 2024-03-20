@@ -6,11 +6,11 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:51:25 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/20 18:20:41 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:18:20 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
 long	ft_atol(char *argv)
 {
@@ -36,10 +36,8 @@ long	ft_atol(char *argv)
 		else
 			return (0);
 	}
-	if(n*s > INT_MAX || n*s < INT_MIN)
-	{
-		
-	}
+	//if(n*s > INT_MAX || n*s < INT_MIN)
+		//ft_error();
 	return (n * s);
 }
 
@@ -58,66 +56,4 @@ long	stack_length(t_node *stack)
 		current = current->next;
 	}
 	return (len);
-}
-
-t_node	*find_target_in_a(t_node **current, t_node *stack)
-{
-	t_node	*target;
-	t_node	*a;
-
-	target = NULL;
-	if (!stack)
-		return (NULL);
-	a = stack;
-	while (stack != NULL)
-	{
-		if (((*current)->nbr < stack->nbr) && (target == NULL))
-			target = stack;
-		else if (((*current)->nbr < stack->nbr) && 
-			((stack->nbr - (*current)->nbr) < (target->nbr - (*current)->nbr)))
-			target = stack;
-		stack = stack->next;
-	}
-	if (target == NULL)
-		target = get_min(a);
-	return (target);
-}
-
-t_node	*find_target_in_b(t_node **current, t_node *stack)
-{
-	t_node	*target;
-	t_node	*b;
-
-	target = NULL;
-	if (!stack)
-		return (NULL);
-	b = stack;
-	while (stack != NULL)
-	{
-		if (((*current)->nbr > stack->nbr) && (target == NULL))
-			target = stack;
-		else if (((*current)->nbr > stack->nbr) && 
-			(((*current)->nbr - stack->nbr) < ((*current)->nbr - target->nbr)))
-			target = stack;
-		stack = stack->next;
-	}
-	if (target == NULL)
-		target = get_max(b);
-	return (target);
-}
-
-t_node	*get_cheapest(t_node *stack)
-{
-	t_node	*cheapest;
-
-	if (!stack)
-		return (NULL);
-	cheapest = stack;
-	while (stack)
-	{
-		if (cheapest->cost > stack->cost)
-			cheapest = stack;
-		stack = stack->next;
-	}
-	return (cheapest);
 }
