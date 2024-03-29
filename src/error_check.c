@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:48:52 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/17 14:15:50 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/29 16:24:48 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 int	write_error(void)
 {
 	write(1, "Error\n", 6);
-	return (1);	
+	return (1);
 }
 
 int	number_error(char *argv)
 {
+	if (!*argv)
+		return (write_error());
 	while (*argv)
 	{
 		if (*argv == '-' || *argv == '+')
@@ -31,7 +33,7 @@ int	number_error(char *argv)
 		}
 		while (*argv)
 		{
-			if (*argv < '0' && *argv > '9')
+			if (*argv < '0' || *argv > '9')
 				return (write_error());
 			argv ++;
 		}
@@ -67,6 +69,8 @@ int	stack_sorted(t_node *stack)
 {
 	t_node	*current;
 
+	if (!stack)
+		return (0);
 	current = stack;
 	while (current->next != NULL)
 	{

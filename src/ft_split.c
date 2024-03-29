@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 14:47:34 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/16 14:49:04 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/23 14:15:04 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ static int	get_number_segments(char const *s, char c)
 	return (count);
 }
 
-static char	**free_array(char **res, int nb)
+char	**free_array(char **res)
 {
 	int	i;
 
 	i = 0;
-	while (i <= nb)
+	while (res[i])
 	{
 		free(res[i]);
 		i ++;
@@ -81,7 +81,7 @@ static char	**create_matrix(const char *s, char c, int nb_segments)
 		len = get_length(s, c, j);
 		res[i] = malloc (sizeof(char) * len + 1);
 		if (!res[i])
-			return (free_array(res, i));
+			return (free_array(res));
 		while (s[j] == c)
 			j++;
 		j += len;

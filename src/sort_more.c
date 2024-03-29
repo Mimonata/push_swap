@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 21:01:30 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/20 18:27:17 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/23 11:51:01 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	move_one(t_node **node, t_node **stack, char a_b)
 		}
 		else if (a_b == 'b' && !(*node)->up_rotation)
 		{
-			rrb(stack);		
+			rrb(stack);
 			set_pos(stack);
 		}
 	}
@@ -66,18 +66,18 @@ void	push_to_a(t_node **node, t_node **src, t_node **dst)
 	if ((*node)->position != 0)
 		move_one(node, src, 'b');
 	if ((*node)->target_node->position != 0)
-		move_one(&((*node)->target_node), dst, 'a');	
+		move_one(&((*node)->target_node), dst, 'a');
 	pa(src, dst);
 }
 
 void	push_to_b(t_node **node, t_node **src, t_node **dst)
 {
 	if (((*node)->up_rotation && (*node)->target_node->up_rotation)
-	|| (!(*node)->up_rotation && !(*node)->target_node->up_rotation))
+		|| (!(*node)->up_rotation && !(*node)->target_node->up_rotation))
 		move_two(node, src, dst);
 	if ((*node)->position != 0)
 		move_one(node, src, 'a');
 	if ((*node)->target_node->position != 0)
-		move_one(&((*node)->target_node), dst, 'b');	
+		move_one(&((*node)->target_node), dst, 'b');
 	pb(src, dst);
 }

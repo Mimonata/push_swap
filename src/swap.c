@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:36:22 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/14 11:37:12 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/29 17:17:10 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ static void	swap_top(t_node **stack)
 {
 	t_node	*temp;
 
-	temp = (*stack)->next;
-	if (!(*stack) || ((*stack)->next == NULL))
+	if (!stack || !(*stack) || ((*stack)->next == NULL))
 		return ;
+	temp = (*stack)->next;
+	if (stack_length(*stack) > 2)
+		temp->next->prev = temp->prev;
 	(*stack)->next = temp->next;
-	temp->next->prev = *stack;
 	(*stack)->prev = temp;
 	temp->prev = NULL;
 	temp->next = *stack;

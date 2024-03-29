@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:51:25 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/20 18:20:41 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/23 11:53:44 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ long	ft_atol(char *argv)
 			n = n * 10 + (argv[i ++] - 48);
 		else
 			return (0);
-	}
-	if(n*s > INT_MAX || n*s < INT_MIN)
-	{
-		
 	}
 	return (n * s);
 }

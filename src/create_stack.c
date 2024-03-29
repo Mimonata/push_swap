@@ -6,7 +6,7 @@
 /*   By: spitul <spitul@student.42berlin.de >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:47:40 by spitul            #+#    #+#             */
-/*   Updated: 2024/03/17 15:45:52 by spitul           ###   ########.fr       */
+/*   Updated: 2024/03/23 18:26:49 by spitul           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	free_stack(t_node **stack)
 	t_node	*current;
 	t_node	*last;
 
+	if (!stack || !*stack)
+		return (1);
 	current = *stack;
 	while (current != NULL)
 	{
@@ -63,11 +65,11 @@ int	create_stack_a(t_node **stack, char **argv)
 	long	n;
 	t_node	*new_node;
 
-	i = 0;
+	i = -1;
 	n = 0;
 	if (!argv)
 		return (1);
-	while (argv[i])
+	while (argv[++ i])
 	{
 		if (!number_error(argv[i]))
 			n = ft_atol(argv[i]);
@@ -82,8 +84,6 @@ int	create_stack_a(t_node **stack, char **argv)
 		}
 		else 
 			return (free_stack(stack));
-		i ++;
 	}
-	printstack(*stack);
 	return (0);
 }
